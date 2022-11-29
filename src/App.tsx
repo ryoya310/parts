@@ -1,10 +1,17 @@
 import React from 'react';
 
-import CalendarX from "./Components/calendar";
+import Calendar1 from "./Components/calendar/calendar2";
+import Calendar2 from "./Components/calendar/";
 
 function App() {
+
+  const datas: any = {
+    '20221121': '〇'
+  }
+
   return <>
-    <CalendarX />
+    {/* <Calendar1 /> */}
+    <Calendar2 datas={datas} />
   </>
 }
 

@@ -1,0 +1,63 @@
+.calendar {
+
+    width: 100%;
+    font-size: 0.9em;
+
+    button {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        &:hover {
+            background: #eee;
+        }
+    }
+
+    .navigation {
+        display: flex;
+        align-items: center;
+
+        > * {
+            height: 40px;
+        }
+        .prev {
+            width: 40%;
+        }
+        .current {
+            width: 20%;
+        }
+        .next {
+            width: 40%;
+        }
+    }
+
+    .views {
+        .weekdays {
+            display: flex;
+            align-items: center;
+            height: 40px;
+            .weekday {
+                flex: 0 0 14.2857%;
+                overflow: hidden;
+                text-align: center;
+            }
+        }
+        .days {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            .day {
+                flex: 0 0 14.2857%;
+                height: 60px;
+                line-height: 60px;
+                overflow: hidden;
+                text-align: center;
+            }
+        }
+        .sun {
+            color: #ff0000;
+        }
+        .sat {
+            color: #0000ff;
+        }
+    }
+}

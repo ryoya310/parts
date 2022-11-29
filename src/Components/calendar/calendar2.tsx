@@ -14,14 +14,16 @@ export default function CalendarX() {
 
   const [value, onChange] = React.useState(new Date())
 
-  const date_json = {
-    '20221121': '123'
-  }
   const DayContents = (props: any) => {
+
+    const date_json: any = {
+      '20221121': '〇'
+    }
+
     const { date, view } = props;
     const dt = dateFormat(date, 'YYYYMMDD')
     const dt_text: string = (date_json[dt]) ? date_json[dt] : ''
-    return <p>{dt_text}</p>
+    return <div>{dt_text}</div>
   }
 
   const onClickDay = (date: any) => {
@@ -41,6 +43,7 @@ export default function CalendarX() {
         next2Label={null}
         onChange={onChange}
         onClickDay={onClickDay}
+        onActiveStartDateChange={(date: any) => console.log(date)}
         tileContent={DayContents}
       />
 
