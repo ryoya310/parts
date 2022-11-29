@@ -1,17 +1,27 @@
 import React from 'react';
 
-import Calendar1 from "./Components/calendar/calendar2";
-import Calendar2 from "./Components/calendar/";
+import Box from '@mui/material/Box';
+
+import Calendar from "./Components/calendar/";
 
 function App() {
 
   const datas: any = {
-    '20221121': '〇'
+    '20221101': {'text': '●', 'status': ''},
+    '20221121': {'text': '●,s', 'status': 'hol'},
+    '20221124': {'text': 's', 'status': 'hol'},
+    '20221126': {'text': 's', 'status': 'hol'},
+    '20221130': {'text': 's', 'status': 'hol'},
   }
 
+  const onClick = (dt: Date) => {
+    console.log(dt)
+  }
   return <>
-    {/* <Calendar1 /> */}
-    <Calendar2 datas={datas} />
+    <Box sx={{ width: 400, margin: "auto" }}>
+      {/* <Calendar1 /> */}
+      <Calendar datas={datas} onClick={onClick} />
+    </Box>
   </>
 }
 

@@ -1,0 +1,91 @@
+.calendar {
+  width: 100%;
+  font-size: 1em;
+}
+.calendar button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  font-size: 16px;
+  padding: 8px;
+}
+.calendar button:hover {
+  background: #eee;
+  opacity: 0.8;
+}
+.calendar .navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.calendar .navigation > * {
+  height: 60px;
+  text-align: center;
+}
+.calendar .navigation .prev {
+  width: 60px;
+  font-size: 18px;
+}
+.calendar .navigation .current {
+  width: 40%;
+}
+.calendar .navigation .current button {
+  font-size: 20px;
+}
+.calendar .navigation .next {
+  width: 60px;
+  font-size: 18px;
+}
+.calendar .views .weekdays {
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+.calendar .views .weekdays .weekday {
+  flex: 0 0 14.2857%;
+  overflow: hidden;
+  text-align: center;
+}
+.calendar .views .days {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.calendar .views .days .day {
+  flex: 0 0 14.2857%;
+  height: 60px;
+  overflow: hidden;
+  text-align: center;
+}
+.calendar .views .days .day button span {
+  display: block;
+  height: 20px;
+}
+.calendar .views .days .day button div {
+  height: 30px;
+}
+.calendar .today button {
+  background: rgba(236, 236, 140, 0.5);
+}
+.calendar .sun {
+  color: #ff0000;
+}
+.calendar .sun button {
+  color: #ff0000;
+}
+.calendar .sat {
+  color: #0000ff;
+}
+.calendar .sat button {
+  color: #0000ff;
+}
+.calendar .hol button {
+  background: rgba(236, 194, 201, 0.5);
+}
+.calendar .oth button {
+  color: rgba(111, 111, 111, 0.5);
+}
+/*# sourceMappingURL=index.module.css.map */

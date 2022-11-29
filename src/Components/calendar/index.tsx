@@ -2,49 +2,108 @@ import React from 'react';
 import dayjs, { Dayjs } from 'dayjs'
 import styles from './index.module.scss';
 
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+
 type Props = {
+  no?: number
   datas?: any
+  onClick?(dt: Date): void
 }
 export default function Calendar(props: Props) {
 
-  const { datas } = props
+  const { no, datas, onClick } = props
+
+  let currentDate = new Date()
+  if (no !== undefined) {
+    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + no, 1)
+  }
+  const toDay = new Date()
+  const [value, onChange] = React.useState(currentDate)
 
   const dateFormat = (date: Date | string, format?: string) => {
     format = (format === undefined) ? 'YYYY/MM/DD' : format
     return dayjs(date).format(format)
   }
 
-  const [value, onChange] = React.useState(new Date())
-
   const onPrev = () => { onChange(new Date(value.getFullYear(), value.getMonth() - 1, 1)); }
   const onCurrent = () => { onChange(new Date()) }
   const onNext = () => { onChange(new Date(value.getFullYear(), value.getMonth() + 1, 1)); }
 
   const stDate = new Date(value.getFullYear(), value.getMonth(), 1)
-  const stWeek = ["日","月","火","水","木","金","土"][stDate.getDay()];
   const enDate = new Date(value.getFullYear(), value.getMonth() + 1, 0)
-  const enWeek = ["日","月","火","水","木","金","土"][enDate.getDay()];
 
-  const st = stDate.getDay() * -1;
-  const en = enDate.getDate() + enDate.getDay() *  1;
-  for (let d=st;d<=en;d++) {
-    const cuDate = new Date(value.getFullYear(), value.getMonth(), 1)
-    console.log(cuDate)
+  const st = (stDate.getDay() >= 6) ? 1 : stDate.getDay() * -1
+  const en = (enDate.getDay() == 6) ? enDate.getDate() - 0 : enDate.getDate() + 6 - enDate.getDay()
+
+  const onDayClick = (dt: Date) => {
+    if (onClick) {
+      onClick(dt)
+    }
+  }
+
+  let Days = [];
+  for (let d=st;d<en;d++) {
+
+    const cuDate = new Date(value.getFullYear(), value.getMonth(), d)
+    let cls = [styles.day]
+    let add = ''
+
+    const dtJSON: any = (datas[dateFormat(cuDate, 'YYYYMMDD')]) ? datas[dateFormat(cuDate, 'YYYYMMDD')] : ''
+
+    // db
+    if (datas[dateFormat(cuDate, 'YYYYMMDD')]) {
+      // 休日
+      if (dtJSON.status == 'hol') {
+        cls.push(styles.hol)
+      }
+      // メモ
+      if (dtJSON.text) {
+        add = dtJSON.text
+      }
+    }
+    // 今日
+    if (`${dateFormat(cuDate, 'YYYYMMDD')}` == `${dateFormat(toDay, 'YYYYMMDD')}`) { cls.push(styles.today) }
+    // 土曜
+    if (cuDate.getDay() == 5) { cls.push(styles.sat) }
+    // 日曜
+    if (cuDate.getDay() == 6) { cls.push(styles.sun) }
+    // 選択月以外
+    if (cuDate.getMonth() != value.getMonth()) { cls.push(styles.oth) }
+
+    Days.push(
+      <div key={`d${d}`} className={cls.join(' ')}>
+        <button type="button" onClick={() => onDayClick(cuDate)}>
+          <span>
+            {cuDate.getDate()}
+          </span>
+          <div>
+            {add}
+          </div>
+        </button>
+      </div>
+    )
   }
 
   return <>
     <div className={styles.calendar}>
 
       <div className={styles.navigation}>
-        <button type='button' className={styles.prev} onClick={onPrev}>
-          ‹
-        </button>
-        <button type='button' className={styles.current} onClick={onCurrent}>
-          {dateFormat(value, 'YYYY/MM')}
-        </button>
-        <button type='button' className={styles.next} onClick={onNext}>
-          ›
-        </button>
+        <div className={styles.prev}>
+          <button type='button' onClick={onPrev}>
+            <ArrowBackIosNewIcon />
+          </button>
+        </div>
+        <div className={styles.current}>
+          <button type='button' onClick={onCurrent}>
+            {dateFormat(value, 'YYYY/MM')}
+          </button>
+        </div>
+        <div className={styles.next}>
+          <button type='button' onClick={onNext}>
+            <ArrowForwardIosIcon />
+          </button>
+        </div>
       </div>
 
       <div className={styles.views}>
@@ -58,24 +117,9 @@ export default function Calendar(props: Props) {
           <div className={`${styles.weekday} ${styles.sat}`}>土</div>
         </div>
         <div className={styles.days}>
-          <button type="button" className={`${styles.day}`}>1</button>
-          <button type="button" className={`${styles.day}`}>2</button>
-          <button type="button" className={`${styles.day}`}>3</button>
-          <button type="button" className={`${styles.day}`}>4</button>
-          <button type="button" className={`${styles.day}`}>5</button>
-          <button type="button" className={`${styles.day}`}>6</button>
-          <button type="button" className={`${styles.day}`}>7</button>
-
-          <button type="button" className={`${styles.day}`}>1</button>
-          <button type="button" className={`${styles.day}`}>2</button>
-          <button type="button" className={`${styles.day}`}>3</button>
-          <button type="button" className={`${styles.day}`}>4</button>
-          <button type="button" className={`${styles.day}`}>5</button>
-          <button type="button" className={`${styles.day}`}>6</button>
-          <button type="button" className={`${styles.day}`}>7</button>
+          {Days}
         </div>
       </div>
-
     </div>
   </>
 }
