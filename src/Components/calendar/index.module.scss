@@ -19,6 +19,10 @@
             text-align: center;
             margin: auto;
         }
+        svg {
+            width: 20px;
+            height: 20px;
+        }
         &:hover {
             background: #eee;
             opacity: 0.8;
@@ -30,14 +34,14 @@
         align-items: center;
         justify-content: center;
         > * {
-            height: 60px;
+            height: 40px;
             text-align: center;
             button {
                 color: rgba(111, 111, 111, 1);
             }
         }
         .prev {
-            width: 60px;
+            width: 40px;
             font-size: 18px;
         }
         .current {
@@ -47,7 +51,7 @@
             }
         }
         .next {
-            width: 60px;
+            width: 40px;
             font-size: 18px;
         }
     }
