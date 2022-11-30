@@ -26,7 +26,7 @@ function App() {
 
   return <>
 
-    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
 
       <Box sx={{ width: 320, margin: "20px auto" }}>
         <Calendar
