@@ -1,16 +1,23 @@
 .calendar {
-
     width: 100%;
-    font-size: 1em;
+    &.bg_gray {
+        background: #f0f0f080;
+        border: 1px solid #aaa;
+        button {
+            &:hover {
+                background: #fff;
+            }
+        }
+    }
     button {
         background: transparent;
         border: none;
         cursor: pointer;
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
-        font-size: 16px;
-        padding: 8px;
+        font-weight: bold;
+        color: rgba(111, 111, 111, 1);
         div {
             white-space: nowrap;
             overflow: hidden;
@@ -18,10 +25,11 @@
             width: 70%;
             text-align: center;
             margin: auto;
+            padding-top: 4px;
         }
         svg {
-            width: 20px;
-            height: 20px;
+            width: 13px;
+            height: 13px;
         }
         &:hover {
             background: #eee;
@@ -33,26 +41,28 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        border-bottom: 1px solid #aaa;
         > * {
-            height: 40px;
+            height: 30px;
+            line-height: 30px;
+            padding: 10px 0;
             text-align: center;
-            button {
-                color: rgba(111, 111, 111, 1);
-            }
         }
         .prev {
-            width: 40px;
-            font-size: 18px;
+            width: 30px;
         }
         .current {
             width: 40%;
             button {
-                font-size: 20px;
+                position: relative;
+                font-size: 16px;
+                &:hover {
+                    border-radius: 4px;
+                }
             }
         }
         .next {
-            width: 40px;
-            font-size: 18px;
+            width: 30px;
         }
     }
 
@@ -60,11 +70,14 @@
         .weekdays {
             display: flex;
             align-items: center;
-            height: 40px;
+            height: 30px;
+            line-height: 30px;
             .weekday {
                 flex: 0 0 14.2857%;
                 overflow: hidden;
                 text-align: center;
+                font-size: 0.8em;
+                border-bottom: 1px solid #aaa;
             }
         }
         .days {
@@ -73,17 +86,22 @@
             align-items: center;
             .day {
                 flex: 0 0 14.2857%;
-                height: 60px;
                 overflow: hidden;
                 text-align: center;
+                padding: 4px 0;
                 button {
+                    height: 30px;
+                    width: 30px;
+                    font-size: 14px;
                     span {
                         display: block;
-                        height: 20px;
+                        height: 18px;
+                        line-height: 18px;
                     }
-                    div {
-                        height: 30px;
-                    }
+                }
+                div {
+                    height: 20px;
+                    font-size: 0.6em;
                 }
             }
         }
@@ -91,7 +109,7 @@
 
     .today {
         button {
-            background: rgba(236, 236, 140, 0.5);
+            background: rgba(255, 230, 100, 0.8);
         }
     }
     .sun {
@@ -113,7 +131,7 @@
     }
     .oth {
         button {
-            color: rgba(111, 111, 111, 0.5);
+            color: #bbc9b7;
         }
     }
 }
