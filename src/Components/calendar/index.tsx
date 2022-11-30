@@ -120,8 +120,7 @@ export default function Calendar(props: Props) {
   }
 
   return <>
-    <div className={`calendar ${styles.calendar} ${styles.bg_gray}`}>
-
+    <div className={`calendar ${styles.calendar}`}>
       {
         (isNavi)
           ? <div className={styles.navigation}>
@@ -143,14 +142,9 @@ export default function Calendar(props: Props) {
             </div>
           : <></>
       }
-
       <div className={styles.views}>
-        <div className={styles.weekdays}>
-          {Weeks}
-        </div>
-        <div className={styles.days}>
-          {Days}
-        </div>
+        <div className={styles.weekdays}>{Weeks}</div>
+        <div className={styles.days}>{Days}</div>
       </div>
     </div>
   </>
