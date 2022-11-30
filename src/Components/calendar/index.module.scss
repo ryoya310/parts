@@ -11,6 +11,14 @@
         border-radius: 50%;
         font-size: 16px;
         padding: 8px;
+        div {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 70%;
+            text-align: center;
+            margin: auto;
+        }
         &:hover {
             background: #eee;
             opacity: 0.8;
@@ -24,6 +32,9 @@
         > * {
             height: 60px;
             text-align: center;
+            button {
+                color: rgba(111, 111, 111, 1);
+            }
         }
         .prev {
             width: 60px;
@@ -80,20 +91,20 @@
         }
     }
     .sun {
-        color: #ff0000;
+        color: rgb(200, 100, 100);
         button {
-            color: #ff0000;
+            color: rgb(200, 100, 100);
         }
     }
     .sat {
-        color: #0000ff;
+        color: rgb(100, 100, 200);
         button {
-            color: #0000ff;
+            color: rgb(100, 100, 200);
         }
     }
     .hol {
         button {
-            background: rgba(236, 194, 201, 0.5);
+            color: rgb(200, 100, 100);
         }
     }
     .oth {

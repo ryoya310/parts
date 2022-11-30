@@ -1,26 +1,27 @@
-import React from 'react';
-
 import Box from '@mui/material/Box';
-
 import Calendar from "./Components/calendar/";
 
 function App() {
 
+  // Calendar DB
   const datas: any = {
+    '20221021': {'text': '●', 'status': ''},
     '20221101': {'text': '●', 'status': ''},
-    '20221121': {'text': '●,s', 'status': 'hol'},
-    '20221124': {'text': 's', 'status': 'hol'},
-    '20221126': {'text': 's', 'status': 'hol'},
-    '20221130': {'text': 's', 'status': 'hol'},
+    '20221121': {'text': '●', 'status': 'hol'},
+    '20221124': {'text': '○', 'status': 'hol'},
+    '20221126': {'text': '▼', 'status': 'hol'},
+    '20221130': {'text': '▲', 'status': 'hol'},
+    '20221223': {'text': '▲', 'status': ''},
   }
 
-  const onClick = (dt: Date) => {
-    console.log(dt)
+  // Day Click Event
+  const onDayClick = (dt: Date) => {
+    console.log("callback")
   }
+
   return <>
     <Box sx={{ width: 400, margin: "auto" }}>
-      {/* <Calendar1 /> */}
-      <Calendar datas={datas} onClick={onClick} />
+      <Calendar datas={datas} onDayClick={onDayClick} />
     </Box>
   </>
 }
