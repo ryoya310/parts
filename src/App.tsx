@@ -1,6 +1,9 @@
+import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import dayjs from 'dayjs'
 import Calendar from "./Components/calendar/";
+import Dialog from './Components/dialog/'
 
 function App() {
 
@@ -17,14 +20,32 @@ function App() {
     '20221223': {'text': '▲', 'status': ''},
   }
 
+  const [dialogOpen, setDialogOpen] = React.useState(false)
+  const [dialog, setDialog] = React.useState({
+    viewType: 'up',
+    label: '',
+    contents: <></>,
+    close: (e: MouseEvent) => {},
+  })
+
   // Day Click Event
   const onDayClick = (dt: Date) => {
 
     const date = dayjs(dt).format("YYYY.MM.DD")
     console.log(date)
+
+    setDialogOpen(true)
+    setDialog({
+      viewType: 'up',
+      label: '入出',
+      contents: <>123</>,
+      close: () => {}
+    })
   }
 
   return <>
+
+    {/* <Dialog dialog={dialog} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} /> */}
 
     <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
 
