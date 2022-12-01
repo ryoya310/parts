@@ -16,10 +16,12 @@ type Props = {
   isNavi?: boolean
   // 日付イベント
   onDayClick?(dt: Date): void
+  // 日付コンテンツ
+  dayContent?(dt: Date): JSX.Element
 }
 export default function Calendar(props: Props) {
 
-  let { lang, no, datas, isNavi, onDayClick } = props
+  let { lang, no, datas, isNavi, onDayClick, dayContent } = props
 
   // ナビゲーション表示
   isNavi = (isNavi !== undefined) ? isNavi : true
@@ -98,20 +100,24 @@ export default function Calendar(props: Props) {
 
     Days.push(
       <div key={`d${d}`} className={cls.join(' ')}>
-        <button
-          type='button'
-          onClick={
-            () => {
-              if (onDayClick) {
-                onDayClick(cuDate)
-              }
-            }
-          }
-        >
-          <span>
-            {cuDate.getDate()}
-          </span>
-        </button>
+        {
+          (dayContent)
+            ? dayContent(cuDate)
+            : <button
+                type='button'
+                onClick={
+                  () => {
+                    if (onDayClick) {
+                      onDayClick(cuDate)
+                    }
+                  }
+                }
+              >
+                <span>
+                  {cuDate.getDate()}
+                </span>
+              </button>
+        }
         <div>
           {add}
         </div>

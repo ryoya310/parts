@@ -1,5 +1,3 @@
-@use "../../../assets/css/config.scss";
-
 .container {
 
 	height: 100%;
@@ -18,7 +16,7 @@
 		display: flex;
 		justify-content:space-between;
 		padding: 0 0.8em;
-        background: linear-gradient(90deg,#51d99c,#9ce7bb);
+		background: linear-gradient(90deg,#51d99c,#9ce7bb);
 		color: #fff;
 		font-size: 1.2em;
 		svg {
@@ -38,7 +36,6 @@
 	}
 }
 .up {
-
 	top: initial!important;
 	margin: auto;
 	padding: 0;
@@ -55,30 +52,11 @@
 }
 
 .left {
-
-	> div {
-		display: block;
-	}
-	left: 0!important;
-	div[aria-labelledby="left"] {
-		background: transparent;
-		border-radius: 0;
-		left: 0!important;
-		bottom: 0!important;
-		max-width: 90%;
-		height: 100%;
-		max-height: 100%;
-		margin: 0;
-	}
-}
-
-.right {
-
 	> div {
 		display: flex;
 		justify-content: flex-end;
 	}
-	div[aria-labelledby="right"] {
+	div[aria-labelledby="left"] {
 		background: transparent;
 		border-radius: 0;
 		bottom: 0!important;
@@ -95,8 +73,25 @@
 	}
 }
 
-.down {
+.right {
+	> div {
+		display: block;
+	}
+	left: 0!important;
+	div[aria-labelledby="right"] {
+		background: transparent;
+		border-radius: 0;
+		left: 0!important;
+		bottom: 0!important;
+		max-width: 90%;
+		height: 100%;
+		max-height: 100%;
+		margin: 0;
+	}
 
+}
+
+.down {
 	> div {
 		display: block;
 	}
@@ -114,7 +109,7 @@
 	div[aria-labelledby="full"] {
 		border-radius: 0;
 		width: 96%;
-		height: 960%;
+		height: 96%;
 		max-width: 1200px;
 		margin: auto;
 		top: 0!important;
@@ -122,26 +117,15 @@
 	}
 }
 
-.confirmContainer {
-
-	.MuiDialog-paper {
-		min-width: 240px;
-		min-height: 120px;
-		max-width: 320px;
-		max-height: 500px;
-	}
-	&-contents {
-		flex-grow: 1;
-		padding: 1em;
-		text-align: center;
-		overflow-x: auto;
-		line-height: 3em;
-	}
-	&-actions {
-		background: #eee;
-		text-align: right;
-		height: 40px;
-		line-height: 40px;
+.harf {
+	div[aria-labelledby="harf"] {
+		border-radius: 0;
+		width: 70%;
+		height: 50%;
+		max-width: 600px;
+		margin: auto;
+		top: 0!important;
+		bottom: 0!important;
 	}
 }
 

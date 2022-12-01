@@ -1,84 +1,17 @@
-import * as React from 'react';
+import { Routes, Route } from "react-router-dom";
 
-import Box from '@mui/material/Box';
-import dayjs from 'dayjs'
-import Calendar from "./Components/calendar/";
-import Dialog from './Components/dialog/'
+import { CommonProvider } from "./providers/common";
 
-function App() {
+import Calendar from "./pages/calendar";
+import Dialog from "./pages/dialog";
 
-  // Calendar DB
-  const datas: any = {
-    '20211121': {'text': '●', 'status': 'hol'},
-    '20211122': {'text': '■', 'status': ''},
-    '20221021': {'text': '●', 'status': ''},
-    '20221101': {'text': '●', 'status': ''},
-    '20221121': {'text': '●', 'status': 'hol'},
-    '20221124': {'text': '○', 'status': 'hol'},
-    '20221126': {'text': '▼', 'status': 'hol'},
-    '20221130': {'text': '▲', 'status': 'hol'},
-    '20221223': {'text': '▲', 'status': ''},
-  }
-
-  const [dialogOpen, setDialogOpen] = React.useState(false)
-  const [dialog, setDialog] = React.useState({
-    viewType: 'up',
-    label: '',
-    contents: <></>,
-    close: (e: MouseEvent) => {},
-  })
-
-  // Day Click Event
-  const onDayClick = (dt: Date) => {
-
-    const date = dayjs(dt).format("YYYY.MM.DD")
-    console.log(date)
-
-    setDialogOpen(true)
-    setDialog({
-      viewType: 'up',
-      label: '入出',
-      contents: <>123</>,
-      close: () => {}
-    })
-  }
-
+export default function App() {
   return <>
-
-    {/* <Dialog dialog={dialog} dialogOpen={dialogOpen} setDialogOpen={setDialogOpen} /> */}
-
-    <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start' }}>
-
-      <Box sx={{ width: 320, margin: "20px auto" }}>
-        <Calendar
-          lang='ja'
-          no={-1}
-          datas={datas}
-          isNavi={false}
-          onDayClick={onDayClick}
-        />
-      </Box>
-
-      <Box sx={{ width: 320, margin: "20px auto" }}>
-        <Calendar
-          lang='ja'
-          no={0}
-          datas={datas}
-          isNavi={true}
-          onDayClick={onDayClick}
-        />
-      </Box>
-
-      <Box sx={{ width: 320, margin: "20px auto" }}>
-        <Calendar
-          lang='en'
-          no={1}
-          datas={datas}
-          onDayClick={onDayClick}
-        />
-      </Box>
-    </Box>
+    <CommonProvider>
+      <Routes>
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/dialog" element={<Dialog />} />
+      </Routes>
+    </CommonProvider>
   </>
 }
-
-export default App;
